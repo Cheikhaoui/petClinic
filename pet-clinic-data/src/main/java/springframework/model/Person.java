@@ -1,4 +1,4 @@
-package hc.springframework.petclinic.model;
+package springframework.model;
 
 public class Person {
 
