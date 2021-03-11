@@ -14,7 +14,7 @@
     </parent>
     <groupId>hc.springFramework</groupId>
     <artifactId>pet-clinic</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>pet-clinic</name>
     <description>Pet Clinic Project</description>
     <properties>
@@ -41,7 +41,7 @@
                 <artifactId>maven-release-plugin</artifactId>
                 <configuration>
                     <goals>install</goals>
-                    <autoVersionSubModules>true</autoVersionSubModules>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>
         </plugins>
@@ -49,6 +49,6 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/Cheikhaoui/petClinic.git</developerConnection>
-      <tag>pet-clinic-0.0.1</tag>
+      <tag>pet-clinic-0.0.5</tag>
   </scm>
 </project>
