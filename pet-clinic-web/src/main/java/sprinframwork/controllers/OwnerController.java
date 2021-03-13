@@ -1,16 +1,14 @@
 package sprinframwork.controllers;
 
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/vets")
-public class IndexController {
+@RequestMapping("/owners")
+public class OwnerController {
 
     @RequestMapping({"","/","index.html","index"})
-    public String getIndexPage(Model model){
-        return "vets/index";
+    public String ListOfOwners(){
+        return "owners/index";
     }
 }
