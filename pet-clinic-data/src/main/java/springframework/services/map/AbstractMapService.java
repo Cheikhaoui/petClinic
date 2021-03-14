@@ -1,6 +1,5 @@
 package springframework.services.map;
 
-import javax.persistence.Id;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,24 +9,24 @@ public abstract  class AbstractMapService <T,ID>{
 
     protected Map<ID,T> map = new HashMap<>();
 
-    Set<T> findAll(){
+    protected Set<T> findAll(){
         return new HashSet<>(map.values());
     }
 
-    T findById(ID id){
+    protected T findById(ID id){
         return map.get(id);
     }
 
-    T save (ID id,T t){
+    protected T save(ID id, T t){
         map.put(id,t);
         return t;
     }
 
-    void deleteById(ID id){
+    protected void deleteById(ID id){
          map.remove(id);
     }
 
-    void delete(T t){
+    protected void delete(T t){
         map.entrySet().removeIf(entry ->entry.getValue().equals(t));
     }
 
