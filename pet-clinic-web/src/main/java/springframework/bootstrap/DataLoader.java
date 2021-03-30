@@ -3,11 +3,14 @@ package springframework.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import springframework.model.Owner;
+import springframework.model.Pet;
 import springframework.model.PetType;
 import springframework.model.Vet;
 import springframework.services.OwnerService;
 import springframework.services.PetTypeService;
 import springframework.services.VetService;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
@@ -37,12 +40,33 @@ public class DataLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setFirstName("Hicham ");
         owner1.setLastName("Cheikhaoui");
+        owner1.setAddress("68 azbezt db el cadi");
+        owner1.setCity("Marrakech");
+        owner1.setTelephone("0618073196");
+
+        Pet mikesPet = new Pet();
+        mikesPet.setPetType(savedDogPetType);
+        mikesPet.setOwner(owner1);
+        mikesPet.setBirthday(LocalDate.now());
+        mikesPet.setName("rosco");
+        owner1.getPets().add(mikesPet);
+
 
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
-        owner2.setFirstName("Fiona");
-        owner2.setLastName("Glenanne");
+        owner2.setFirstName("Nizar");
+        owner2.setLastName("Benchouchou");
+        owner1.setAddress("acharaf 09");
+        owner1.setCity("Marrakech");
+        owner1.setTelephone("0710161016 ");
+
+        Pet nizarCat = new Pet();
+        mikesPet.setPetType(savedCatPetType);
+        mikesPet.setOwner(owner2);
+        mikesPet.setBirthday(LocalDate.now());
+        mikesPet.setName("cato");
+        owner2.getPets().add(nizarCat);
 
         System.out.println("Loaded Owners....");
 
