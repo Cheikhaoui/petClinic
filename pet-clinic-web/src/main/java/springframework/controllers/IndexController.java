@@ -12,4 +12,9 @@ public class IndexController {
     public String getIndexPage(Model model){
         return "index";
     }
+
+    @RequestMapping("/oups")
+    public String oups(){
+        return "notImplemented";
+    }
 }
