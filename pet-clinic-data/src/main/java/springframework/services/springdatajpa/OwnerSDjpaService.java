@@ -11,6 +11,7 @@ import springframework.services.OwnerService;
 import java.util.HashSet;
 import java.util.Set;
 @Service
+@Profile("springdatajpa")
 public class OwnerSDjpaService implements OwnerService {
 
     private final OwnerRepository ownerRepository;
