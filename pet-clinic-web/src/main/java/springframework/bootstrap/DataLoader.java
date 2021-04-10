@@ -3,10 +3,7 @@ package springframework.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import springframework.model.*;
-import springframework.services.OwnerService;
-import springframework.services.PetTypeService;
-import springframework.services.SpecialtyService;
-import springframework.services.VetService;
+import springframework.services.*;
 
 import java.lang.reflect.Array;
 import java.time.LocalDate;
@@ -19,12 +16,14 @@ public class DataLoader implements CommandLineRunner {
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtyService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService , PetTypeService petTypeService , SpecialtyService specialtyService) {
+    public DataLoader(OwnerService ownerService, VetService vetService , PetTypeService petTypeService , SpecialtyService specialtyService,VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.specialtyService = specialtyService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -65,6 +64,7 @@ public class DataLoader implements CommandLineRunner {
         owner1.setCity("Marrakech");
         owner1.setTelephone("0618073196");
 
+
         Pet mikesPet = new Pet();
         mikesPet.setPetType(savedDogPetType);
         mikesPet.setOwner(owner1);
@@ -92,6 +92,12 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("Loaded Owners....");
 
         ownerService.save(owner2);
+
+        Visit catVisit = new Visit();
+        catVisit.setDate(LocalDate.now());
+        catVisit.setDescription("smeally cat");
+        catVisit.setPet(nizarCat);
+        Visit visit = visitService.save(catVisit);
 
         Vet vet1 = new Vet();
         vet1.setFirstName("Sam");
