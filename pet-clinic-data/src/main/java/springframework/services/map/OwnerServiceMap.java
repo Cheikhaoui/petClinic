@@ -9,7 +9,10 @@ import springframework.services.OwnerService;
 import springframework.services.PetService;
 import springframework.services.PetTypeService;
 
+import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @Profile({"default","map"})
@@ -65,6 +68,9 @@ public class OwnerServiceMap extends AbstractMapService<Owner,Long> implements O
 
     @Override
     public Owner findByLastName(String lastName) {
-        return null;
+        Optional<Map.Entry<Long,Owner>>  any =  map.entrySet().stream().filter(e->
+            e.getValue().getLastName().equalsIgnoreCase(lastName)
+        ).findAny();
+        return any.map(Map.Entry::getValue).orElse(null);
     }
 }
