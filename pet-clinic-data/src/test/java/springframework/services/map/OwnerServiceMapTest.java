@@ -21,7 +21,7 @@ class OwnerServiceMapTest {
     @Test
     void findAll() {
         Set<Owner> ownerSet = ownerServiceMap.findAll();
-        assertEquals(id,ownerSet.size());
+        assertEquals(2,ownerSet.size());
     }
 
     @Test
