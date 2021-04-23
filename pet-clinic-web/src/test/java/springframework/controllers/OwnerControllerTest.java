@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import springframework.model.Owner;
 import springframework.services.OwnerService;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -66,6 +67,25 @@ class OwnerControllerTest {
         mockMvc.perform(get("/owners/123")).andExpect(status().isOk())
                 .andExpect(view().name("owners/ownerDetails"))
                 .andExpect(model().attribute("owner",hasProperty("id",is(1l))));
+    }
+
+    @Test
+    void findOneResultFromFind() throws Exception {
+        when(ownerService.findAllByLastNameLike(anyString())).
+                thenReturn(Arrays.asList(Owner.builder().id(1l).build(),
+                        Owner.builder().id(2l).build()));
+        mockMvc.perform(get("/owners"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/ownersList"))
+                .andExpect(model().attribute("selections",hasSize(2)));
+    }
+    @Test
+    void findMultipleResultFromFind() throws Exception {
+        when(ownerService.findAllByLastNameLike(anyString())).
+                thenReturn(Arrays.asList(Owner.builder().id(1l).build()));
+        mockMvc.perform(get("/owners"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/owners/1"));
     }
 
 
