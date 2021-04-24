@@ -24,4 +24,7 @@ public class BaseEntity implements Serializable {
         return other instanceof BaseEntity;
     }
 
+    public boolean isNew(){
+        return this.id == null ;
+    }
 }
