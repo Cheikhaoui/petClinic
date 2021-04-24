@@ -1,10 +1,13 @@
 package springframework.model;
 
 import lombok.*;
+import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 @Getter
 @Setter
 @Entity
@@ -31,6 +34,16 @@ public class Owner extends Person {
 
     protected boolean canEqual(final Object other) {
         return other instanceof Owner;
+    }
+
+    public Pet getPet(String name){
+        Set<Pet> petSet = pets.stream().filter(pet -> !pet.isNew()&& pet.getName().equalsIgnoreCase(name)).collect(Collectors.toSet());
+       if(!CollectionUtils.isEmpty(petSet)){
+           return petSet.iterator().next();
+       }else {
+           return null;
+       }
+
     }
 
 }
