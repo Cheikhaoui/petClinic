@@ -61,6 +61,7 @@ public class PetController {
             bindingResult.rejectValue("name","duplicate","already exists");
         }
         owner.getPets().add(pet);
+        pet.setOwner(owner);
         if(bindingResult.hasErrors()){
             model.addAttribute("pet",pet);
             return VIEW_PET_CREATE_UPDATE_FORM;
@@ -89,5 +90,7 @@ public class PetController {
             return "redirect:/owners/"+owner.getId();
         }
     }
+
+
 
 }
